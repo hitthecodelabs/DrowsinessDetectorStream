@@ -1,4 +1,4 @@
-# DrowsinessDetectorStream
+# Drowsiness Detector Stream
 
 ![Familia sonriente conduciendo con el sistema de detección de somnolencia en el tablero](images/happyFamily.png)
 
