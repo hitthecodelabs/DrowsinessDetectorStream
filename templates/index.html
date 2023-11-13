@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" style="display: flex; flex-direction: column; min-height: 100vh;">
+<head>
+    <meta charset="UTF-8">
+    <title>IA Detector de Sueño</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Styles */
+        .container {
+            flex: 1;
+        }
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .card-img-top {
+            border: 2px solid #007bff;
+            border-radius: 5px;
+        }
+        .footer {
+            text-align: center;
+            background-color: #343a40;
+            color: #fff;
+            padding: 1em 0;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding-top: 20px;
+            padding-bottom: 40px;
+        }
+        .main-wrapper {
+            flex-grow: 1;
+            min-height: calc(100vh - 60px - 60px);
+        }
+    </style>
+</head>
+
+<body style="display: flex; flex-direction: column; margin: 0;">
+
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">IA Detector de Sueño</a>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Documentation</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-wrapper"> 
+        <div class="container main-content"> 
+            <div class="center">
+                <h1 class="display-3 mb-4">IA Detector de Sueño</h1>
+                <div class="card border-primary" style="width: 50%;">
+                    <!-- Make sure this is visible -->
+                    <video id="videoFeed" class="card-img-top d-none" autoplay></video>
+                    <div class="card-body">
+                        <p class="card-text text-center">Stay alert with our AI-powered drowsiness detector.</p>
+                        <button id="startBtn" class="btn btn-primary btn-block">Start Detector</button>
+                        <button id="pauseBtn" class="btn btn-danger btn-block d-none">Pause Detector</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <span>© 2023 IA Detector de Sueño | All Rights Reserved | Follow us on <a href="#">Twitter</a>, <a href="#">LinkedIn</a></span>
+        </div>
+    </footer>
+
+    <!-- Additional JS and bootstrap JS -->
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script defer src="static/js/face-api.min.js"></script> <!-- Include face-api.js -->
+    <script defer src="static/js/main.js"></script> <!-- Include your main.js -->
+    <!-- Additional JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const startBtn = document.getElementById("startBtn");
+            const pauseBtn = document.getElementById("pauseBtn");
+            const videoFeed = document.getElementById("videoFeed");
+            // const processedFeed = document.getElementById("processedFeed");
+            
+            // Initialize audio context for alarm
+            initAudioContext();
+
+            // Initialize webcam on page load
+            setupWebcam().then(video => {
+                videoFeed.classList.remove("d-none"); // Make the live feed visible
+            });
+
+            startBtn.addEventListener("click", () => {
+                // startCamera();  // Commented out
+                // processedFeed.classList.remove("d-none");  // Make the processed feed visible
+                // await main();  // Initialize webcam and start drowsiness detection
+                (async () => {
+                    await main();  // Initialize webcam and start drowsiness detection
+                })();
+                startBtn.classList.add("d-none");
+                pauseBtn.classList.remove("d-none");
+                // toggleServerCamera();  // Turn on the camera on the server
+            });
+
+            pauseBtn.addEventListener("click", () => {
+                // stopCamera();  // Commented out
+                // processedFeed.classList.add("d-none");  // Hide the processed feed
+                
+                if (detectionInterval) {
+                    clearInterval(detectionInterval);
+                }
+                
+                pauseBtn.classList.add("d-none");
+                startBtn.classList.remove("d-none");
+                // toggleServerCamera();  // Turn off the camera on the server
+            });
+        });
+    </script>
+</body>
+</html>

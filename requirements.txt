@@ -1,0 +1,7 @@
+Pillow==9.4.0
+dlib==19.24.2
+flask==2.2.2
+pygame==2.5.1
+numpy==1.24.3
+python-vlc==3.0.18122
+gunicorn
