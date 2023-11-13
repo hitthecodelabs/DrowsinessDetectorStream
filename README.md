@@ -26,7 +26,7 @@ DrowsinessDetectorStream is a real-time drowsiness detection system using a webc
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/[your-username]/DrowsinessDetectorStream.git
+git clone https://github.com/hitthecodelabs/DrowsinessDetectorStream.git
 ```
 2. Install the required packages:
 ```bash
