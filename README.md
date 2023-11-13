@@ -1,5 +1,7 @@
 # DrowsinessDetectorStream
 
+![Familia sonriente conduciendo con el sistema de detección de somnolencia en el tablero](images/happyFamily.png)
+
 ## Description
 DrowsinessDetectorStream is a real-time drowsiness detection system using a webcam feed. It utilizes OpenCV for image processing, Dlib for facial landmark detection, and Pygame for alarm notifications. The application is built on Flask for easy web streaming of the video feed.
 
